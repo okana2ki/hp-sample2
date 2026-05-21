@@ -7,31 +7,72 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- 
+        スキップリンク：キーボードで操作するユーザーが、
+        ヘッダーを飛ばしてメインコンテンツに直接移動できる機能です。
+        視覚的には見えませんが、TabキーでWebページを移動する際に表示されます。
+    -->
+    <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
+
     <header>
         <h1>My First Web Page</h1>
         <p>HTML, CSS, JavaScriptを学ぼう</p>
     </header>
 
-    <main>
+    <!-- 
+        id="main-content" は、スキップリンクの移動先です。
+        スクリーンリーダーやキーボードナビゲーション対応になります。
+    -->
+    <main id="main-content">
         <section id="gallery">
             <h2>フォトギャラリー</h2>
             <div class="photo-container">
-                <img src="https://picsum.photos/seed/beginner1/400/300" alt="Sample 1">
-                <img src="https://picsum.photos/seed/beginner2/400/300" alt="Sample 2">
-                <img src="https://picsum.photos/seed/beginner3/400/300" alt="Sample 3">
+                <!-- 
+                    alt属性：画像が表示できない場合や、
+                    スクリーンリーダーを使っているユーザーに説明を提供します。
+                    具体的で説明的なテキストを記述することが重要です。
+                -->
+                <img src="https://picsum.photos/seed/beginner1/400/300" alt="フォトギャラリーのサンプル画像1：風景写真">
+                <img src="https://picsum.photos/seed/beginner2/400/300" alt="フォトギャラリーのサンプル画像2：風景写真">
+                <img src="https://picsum.photos/seed/beginner3/400/300" alt="フォトギャラリーのサンプル画像3：風景写真">
             </div>
         </section>
 
         <section id="interactive">
             <h2>インタラクティブ機能</h2>
             <div class="card">
-                <p id="counter-text">クリック数: 0</p>
-                <button id="click-me-btn">ボタンをクリック！</button>
+                <!-- 
+                    role="status" と aria-live="polite" は、
+                    スクリーンリーダーユーザーに動的に更新されたテキストを読み上げさせます。
+                -->
+                <p id="counter-text" role="status" aria-live="polite">クリック数: 0</p>
+                <!-- 
+                    aria-label：ボタンに詳しい説明を加えます。
+                    スクリーンリーダーはこの説明を読み上げます。
+                -->
+                <button id="click-me-btn" aria-label="ボタンをクリックして、クリック数をカウントアップします">
+                    ボタンをクリック！
+                </button>
             </div>
             
             <div class="card">
-                <input type="text" id="name-input" placeholder="あなたの名前を入力...">
-                <p id="greeting-text">ここに挨拶が表示されます</p>
+                <!-- 
+                    label要素とfor属性を使用することで、
+                    入力フィールドとラベルを関連付けます。
+                    これによりスクリーンリーダーやタッチデバイスで使いやすくなります。
+                -->
+                <label for="name-input">あなたの名前を入力</label>
+                <input 
+                    type="text" 
+                    id="name-input" 
+                    placeholder="例：山田太郎"
+                    aria-describedby="greeting-text"
+                >
+                <!-- 
+                    role="status" と aria-live="polite" により、
+                    入力内容に応じた挨拶をスクリーンリーダーが自動的に読み上げます。
+                -->
+                <p id="greeting-text" role="status" aria-live="polite">ここに挨拶が表示されます</p>
             </div>
         </section>
 
@@ -39,23 +80,46 @@
             <h2>ファイルをダウンロード</h2>
             <div class="card">
                 <p>このページで使っている3つのファイルをダウンロードできます。</p>
-                <!-- 横並びのボタンリストです -->
+                <!-- 
+                    ul と li で構造化されたリスト：
+                    スクリーンリーダーが「リスト：3項目」と読み上げ、
+                    ユーザーが構造を理解しやすくなります。
+                -->
                 <ul class="download-list">
                     <li>
-                        <a class="download-btn" href="index.html" download="index.html">
-                            <span class="download-icon">⬇</span>
+                        <!-- 
+                            aria-label：ダウンロードボタンに詳しい説明を追加します。
+                            複数の同じアイコンがある場合、スクリーンリーダーの区別に役立ちます。
+                        -->
+                        <a 
+                            class="download-btn" 
+                            href="index.html" 
+                            download="index.html"
+                            aria-label="index.html (HTML) をダウンロード"
+                        >
+                            <span class="download-icon" aria-hidden="true">⬇</span>
                             index.html をダウンロード
                         </a>
                     </li>
                     <li>
-                        <a class="download-btn" href="script.js" download="script.js">
-                            <span class="download-icon">⬇</span>
+                        <a 
+                            class="download-btn" 
+                            href="script.js" 
+                            download="script.js"
+                            aria-label="script.js (JavaScript) をダウンロード"
+                        >
+                            <span class="download-icon" aria-hidden="true">⬇</span>
                             script.js をダウンロード
                         </a>
                     </li>
                     <li>
-                        <a class="download-btn" href="style.css" download="style.css">
-                            <span class="download-icon">⬇</span>
+                        <a 
+                            class="download-btn" 
+                            href="style.css" 
+                            download="style.css"
+                            aria-label="style.css (CSS) をダウンロード"
+                        >
+                            <span class="download-icon" aria-hidden="true">⬇</span>
                             style.css をダウンロード
                         </a>
                     </li>

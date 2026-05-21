@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>入門：3つのファイルで作るウェブページ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>My First Web Page</h1>
+        <p>HTML, CSS, JavaScriptを学ぼう</p>
+    </header>
+
+    <main>
+        <section id="gallery">
+            <h2>フォトギャラリー</h2>
+            <div class="photo-container">
+                <img src="https://picsum.photos/seed/beginner1/400/300" alt="Sample 1">
+                <img src="https://picsum.photos/seed/beginner2/400/300" alt="Sample 2">
+                <img src="https://picsum.photos/seed/beginner3/400/300" alt="Sample 3">
+            </div>
+        </section>
+
+        <section id="interactive">
+            <h2>インタラクティブ機能</h2>
+            <div class="card">
+                <p id="counter-text">クリック数: 0</p>
+                <button id="click-me-btn">ボタンをクリック！</button>
+            </div>
+            
+            <div class="card">
+                <input type="text" id="name-input" placeholder="あなたの名前を入力...">
+                <p id="greeting-text">ここに挨拶が表示されます</p>
+            </div>
+        </section>
+
+        <section id="downloads">
+            <h2>ファイルをダウンロード</h2>
+            <div class="card">
+                <p>このページで使っている3つのファイルをダウンロードできます。</p>
+                <!-- 横並びのボタンリストです -->
+                <ul class="download-list">
+                    <li>
+                        <a class="download-btn" href="index.html" download="index.html">
+                            <span class="download-icon">⬇</span>
+                            index.html をダウンロード
+                        </a>
+                    </li>
+                    <li>
+                        <a class="download-btn" href="script.js" download="script.js">
+                            <span class="download-icon">⬇</span>
+                            script.js をダウンロード
+                        </a>
+                    </li>
+                    <li>
+                        <a class="download-btn" href="style.css" download="style.css">
+                            <span class="download-icon">⬇</span>
+                            style.css をダウンロード
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Web Development Sample for Students</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

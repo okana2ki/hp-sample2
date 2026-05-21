@@ -64,6 +64,22 @@ h2 {
     margin-bottom: 1rem;
 }
 
+/* 
+   ラベル要素のスタイル：
+   入力フィールドの説明をより目立たせます。
+   初心者ユーザーが入力欄の目的を理解しやすくなります。
+*/
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #1e40af;
+}
+
+/* 
+   button 要素のスタイル：
+   クリックボタンの見た目と動作を定義します。
+*/
 button {
     background-color: #3b82f6;
     color: white;
@@ -72,11 +88,53 @@ button {
     border-radius: 6px;
     cursor: pointer;
     font-size: 1rem;
-    transition: background 0.3s;
+    transition: background 0.3s ease, outline-offset 0.2s ease;
 }
 
 button:hover {
     background-color: #2563eb;
+}
+
+/* 
+   button:focus のスタイル：
+   キーボード操作でボタンがフォーカスされた時に、
+   目立つアウトライン（枠線）を表示します。
+   これにより、キーボードユーザーが今どのボタンを操作しているかが分かります。
+*/
+button:focus {
+    outline: 3px solid #1e40af;
+    outline-offset: 2px;
+}
+
+button:active {
+    transform: scale(0.98); /* クリック時に少し小さくなる視覚効果 */
+}
+
+/* 
+   input 要素のスタイル：
+   テキスト入力フィールドの見た目を定義します。
+*/
+input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    box-sizing: border-box; /* パディングを含めたサイズ計算 */
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 
+   input:focus のスタイル：
+   キーボードでテキスト入力欄にフォーカスされた時に、
+   青いアウトラインと枠線を表示します。
+   これにより、どの入力欄が選択されているか明確になります。
+*/
+input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 /* ダウンロードボタンエリアのスタイル */
@@ -105,14 +163,25 @@ button:hover {
     text-decoration: none;
     padding: 0.9rem 1.2rem;
     border-radius: 8px;
-    border: 1px solid transparent;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    border: 2px solid transparent;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease, outline-offset 0.2s ease;
 }
 
 .download-btn:hover {
     background-color: #2563eb;
-    transform: translateY(-1px);
+    transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(37, 99, 235, 0.2);
+}
+
+/* 
+   .download-btn:focus のスタイル：
+   キーボードでダウンロードリンクがフォーカスされた時に、
+   明確なアウトラインを表示します。
+   キーボードナビゲーション時の視認性が向上します。
+*/
+.download-btn:focus {
+    outline: 3px solid #1e40af;
+    outline-offset: 2px;
 }
 
 .download-btn:active {
@@ -125,25 +194,136 @@ button:hover {
     line-height: 1;
 }
 
-input {
-    width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    margin-bottom: 1rem;
-    box-sizing: border-box; /* パディングを含めたサイズ計算 */
-}
-
 footer {
     text-align: center;
     padding: 2rem;
     font-size: 0.9rem;
-    color: #666;
+    /* 
+       色を #666 から #444 に変更：
+       背景色 #f4f4f9 との対比を強くし、
+       視力が低下した方でも読みやすくなります。
+       WCAG AA準拠のコントラスト比になります。
+    */
+    color: #444;
 }
 
-/* スマホ用の設定（レスポンシブ） */
+/* 
+   スキップリンクのスタイル：
+   通常は画面外に配置されており、見えません。
+   Tabキーで最初にフォーカスすると表示されます。
+   キーボードユーザーにメインコンテンツへの直接移動を提供します。
+*/
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #1e40af;
+    color: white;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    top: 0; /* フォーカス時に画面の上部に表示される */
+}
+
+/* 
+   モバイル用の設定（レスポンシブ）：
+   画面幅が 600px 以下（主にスマートフォン）の時に適用されます。
+*/
 @media (max-width: 600px) {
     .photo-container img {
-        width: 100%;
+        width: 100%; /* 1列レイアウト */
+    }
+
+    /* 
+       ダウンロードボタンをスタック（縦並び）レイアウトに：
+       スマートフォンの小さい画面では、
+       ボタンを上下に積み重ねる方が使いやすくなります。
+    */
+    .download-list {
+        flex-direction: column;
+    }
+
+    /* 
+       モバイルでのボタンサイズ調整：
+       タップするのに十分な大きさ（最小高さ 44px）を確保します。
+       これは Apple や Google の推奨値です。
+    */
+    button,
+    input,
+    .download-btn {
+        min-height: 44px;
+        padding: 0.75rem 1rem;
+    }
+
+    /* タッチキーボードが表示されないように、フォント size を調整 */
+    input {
+        font-size: 16px; /* 16px 未満だと iOS でズームされてしまいます */
+    }
+
+    label {
+        font-size: 1.05rem; /* モバイルでも読みやすいサイズに */
+    }
+}
+
+/* 
+   タブレット用の調整：
+   画面幅が 601px 以上 800px 以下の場合
+*/
+@media (max-width: 800px) and (min-width: 601px) {
+    .photo-container {
+        gap: 0.5rem;
+    }
+
+    .photo-container img {
+        width: calc(50% - 0.5rem); /* 2列レイアウト */
+    }
+}
+
+/* 
+   高コントラストモード対応：
+   Windows ハイコントラストモードやダークモードが有効な場合に、
+   より強いコントラストを確保します。
+*/
+@media (prefers-contrast: more) {
+    button,
+    .download-btn {
+        border: 2px solid #000;
+    }
+
+    input {
+        border: 2px solid #000;
+    }
+}
+
+/* 
+   ダークモード対応：
+   ユーザーが OS でダークモードを設定している場合に適用されます。
+*/
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1a1a;
+        color: #e0e0e0;
+    }
+
+    .card {
+        background: #2a2a2a;
+        color: #e0e0e0;
+    }
+
+    input {
+        background-color: #333;
+        color: #e0e0e0;
+        border-color: #555;
+    }
+
+    input:focus {
+        border-color: #60a5fa;
+    }
+
+    footer {
+        color: #bbb;
     }
 }
